@@ -134,9 +134,9 @@ Answer the following questions:
 <img width="477" alt="step2_steering" src="https://user-images.githubusercontent.com/36104217/180228819-23a7a5da-eb6b-4fdc-81e9-046b3b833f68.png">
 <img width="479" alt="step2_throttle" src="https://user-images.githubusercontent.com/36104217/180228828-c7061299-1987-4133-9f4a-0746b0fac243.png">
 
-Steering is having acceptable error state, but overshoot could be reduce by slightly decreasing KP.
-Throttle is having huge overshoot and steady state error . KP and KD should be decresed significantly. 
-Vehicle is constantly crashing to obstacles.
++ Steering is having acceptable error state, but overshoot could be reduce by slightly decreasing KP.
++ Throttle is having huge overshoot and steady state error . KP and KD should be decresed significantly. 
++ Vehicle is constantly crashing to obstacles.
 
 ### Case 2:
 
@@ -144,18 +144,18 @@ Vehicle is constantly crashing to obstacles.
 <img width="481" alt="step2_steering_1" src="https://user-images.githubusercontent.com/36104217/180229768-c9b98456-5353-41e5-b593-883837f9edb2.png">
 <img width="481" alt="step2_throttle_1" src="https://user-images.githubusercontent.com/36104217/180229773-7a5f6d5a-74bf-4b89-b39a-a8d8664bf842.png">
 
-Steering is having better error state and overshoot.
-Throttle is having less overshoot but steady state error is still significant.
-Vehicle can avoid some obstacles, but the steering and throttle jerking is still there, affecting driver experience.
++ Steering is having better error state and overshoot.
++ Throttle is having less overshoot but steady state error is still significant.
++ Vehicle can avoid some obstacles, but the steering and throttle jerking is still there, affecting driver experience.
 ### Case 3:
 
 <img width="404" alt="data_2" src="https://user-images.githubusercontent.com/36104217/180229923-a24da3f9-e3a6-4df3-a7fc-366d80159db1.png">
 <img width="485" alt="step2_steering_2" src="https://user-images.githubusercontent.com/36104217/180229925-69cfff4d-8577-4b7b-8615-fcc8abe2c979.png">
 <img width="482" alt="step2_throttle_2" src="https://user-images.githubusercontent.com/36104217/180229918-73264b26-7fc1-4e6a-aa8d-be67a95d2c8a.png">
 
-Steering is having better error state and overshoot.
-Throttle is having less overshoot. Steady State Error is decreasing in later iterations, because it's a trade off for small KP and KD to avoid overshoot.
-Vehicle can avoid all obstacles in simulation, but lane keeping is just acceptable and drive at very slow speed.
++ Steering is having better error state and overshoot.
++ Throttle is having less overshoot. Steady State Error is decreasing in later iterations, because it's a trade off for small KP and KD to avoid overshoot.
++ Vehicle can avoid all obstacles in simulation, but lane keeping is just acceptable and drive at very slow speed.
 
 # Key questions for this project
 ## What is the effect of the PID according to the plots, how each part of the PID affects the control command?
@@ -164,7 +164,7 @@ Vehicle can avoid all obstacles in simulation, but lane keeping is just acceptab
 + Derivative term: calculated by determining the slope of the error over time and multiplying this rate of change by the derivative gain. Derivative action predicts system behavior and thus improves settling time and stability of the system.
 
 ## How would you design a way to automatically tune the PID parameters?
-Twiddle algorithm: The twiddle algorithm continuously tunes the PID controller's hyperparameters by analyzing the cross-track error and keeping track of the smallest CTE.
++ Twiddle algorithm: The twiddle algorithm continuously tunes the PID controller's hyperparameters by analyzing the cross-track error and keeping track of the smallest CTE.
 
 ## PID controller is a model free controller, i.e. it does not use a model of the car. Could you explain the pros and cons of this type of controller?
 
@@ -174,4 +174,4 @@ Cons:
 + With PID it's difficult to handle multiple constraints
 
 ## What would you do to improve the PID controller?
-Applying Twiddle algorithm might help in tuning PID parameters.
++ Applying Twiddle algorithm might help in tuning PID parameters.
