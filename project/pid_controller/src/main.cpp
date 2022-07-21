@@ -226,7 +226,10 @@ int main ()
   **/
 
   PID pid_steer = PID();
+  pid_steer.Init(0.5, 0.05, 0.5, 1.0, -1.0);
+
   PID pid_throttle = PID();
+  pid_throttle.Init(0.5, 0.05, 0.5, 1.0, -1.0);
 
   h.onMessage([&pid_steer, &pid_throttle, &new_delta_time, &timer, &prev_timer, &i, &prev_timer](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode)
   {
