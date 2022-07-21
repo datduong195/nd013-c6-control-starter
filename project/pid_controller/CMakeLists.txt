@@ -9,7 +9,18 @@ add_definitions(-std=c++14 -O3)
 set(CXX_FLAGS "-pthread -fPIC -DNDEBUG -Wall -Wextra")
 set(CMAKE_CXX_FLAGS "${CXX_FLAGS} -Wl,-Bstatic -lcarla_client -lrpc -lboost_filesystem -Wl,-Bdynamic")
 
-set(sources main.cpp behavior_planner_FSM.cpp motion_planner.cpp cubic_spiral.cpp spiral_base.cpp integral.cpp spiral_equations.cpp cost_functions.cpp utils.cpp velocity_profile_generator.cpp pid_controller.cpp)
+set(sources 
+src/main.cpp 
+src/behavior_planner_FSM.cpp 
+src/motion_planner.cpp 
+src/cubic_spiral.cpp 
+src/spiral_base.cpp 
+src/integral.cpp 
+src/spiral_equations.cpp 
+src/cost_functions.cpp 
+src/utils.cpp 
+src/velocity_profile_generator.cpp 
+src/pid_controller.cpp)
 
 set(CARLALIB_DIR ${CMAKE_SOURCE_DIR}/libcarla-install/lib)
 set(carla_libs  ${CARLALIB_DIR}/libboost_filesystem.a ${CARLALIB_DIR}/libboost_numpy36.a ${CARLALIB_DIR}/libboost_program_options.a ${CARLALIB_DIR}/libboost_python36.a ${CARLALIB_DIR}/libboost_system.a ${CARLALIB_DIR}/libcarla_client.a ${CARLALIB_DIR}/librpc.a ${CARLALIB_DIR}/libDebugUtils.a ${CARLALIB_DIR}/libDetour.a ${CARLALIB_DIR}/libDetourCrowd.a ${CARLALIB_DIR}/libDetourTileCache.a ${CARLALIB_DIR}/libRecast.a)
