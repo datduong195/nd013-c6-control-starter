@@ -116,3 +116,62 @@ Answer the following questions:
 - If the simulation freezes on the desktop mode but is still running on the terminal, close the desktop and restart it.
 - When you will be tuning the PID parameters, try between those values:
 
+# Results
+
+<img width="960" alt="step1" src="https://user-images.githubusercontent.com/36104217/180228468-443c68eb-221f-4eea-9e03-ae0a1a382649.png">
+
+## Testing results for mutiple PID Controller
+
+|  TEST  | KP_STEER | KI_STEER | KD_STEER | KP_THROTTLE | KI_THROTTLE | KD_THROTTLE |
+|:------:|:--------:|:--------:|:--------:|:-----------:|:-----------:|:-----------:|
+| Test 1 |   0.5    |   0.01   |   0.5    |    0.5      |    0.001    |     0.5     |
+| Test 2 |   0.4    |   0.001  |   0.35   |    0.2      |    0.001    |     0.02    |
+| Test 3 |   0.4    |   0.001  |   0.35   |    0.2      |    0.0015   |     0.04    |
+
+### Case 1:
+
+<img width="402" alt="data_0" src="https://user-images.githubusercontent.com/36104217/180228832-f0176921-12c1-4fb3-9f7f-38b7f8a9895c.png">
+<img width="477" alt="step2_steering" src="https://user-images.githubusercontent.com/36104217/180228819-23a7a5da-eb6b-4fdc-81e9-046b3b833f68.png">
+<img width="479" alt="step2_throttle" src="https://user-images.githubusercontent.com/36104217/180228828-c7061299-1987-4133-9f4a-0746b0fac243.png">
+
++ Steering is having acceptable error state, but overshoot could be reduce by slightly decreasing KP.
++ Throttle is having huge overshoot and steady state error . KP and KD should be decresed significantly. 
++ Vehicle is constantly crashing to obstacles.
+
+### Case 2:
+
+<img width="402" alt="data_1" src="https://user-images.githubusercontent.com/36104217/180229775-a89e1509-0773-4877-aeb1-1a37fe9596ee.png">
+<img width="481" alt="step2_steering_1" src="https://user-images.githubusercontent.com/36104217/180229768-c9b98456-5353-41e5-b593-883837f9edb2.png">
+<img width="481" alt="step2_throttle_1" src="https://user-images.githubusercontent.com/36104217/180229773-7a5f6d5a-74bf-4b89-b39a-a8d8664bf842.png">
+
++ Steering is having better error state and overshoot.
++ Throttle is having less overshoot but steady state error is still significant.
++ Vehicle can avoid some obstacles, but the steering and throttle jerking is still there, affecting driver experience.
+### Case 3:
+
+<img width="404" alt="data_2" src="https://user-images.githubusercontent.com/36104217/180229923-a24da3f9-e3a6-4df3-a7fc-366d80159db1.png">
+<img width="485" alt="step2_steering_2" src="https://user-images.githubusercontent.com/36104217/180229925-69cfff4d-8577-4b7b-8615-fcc8abe2c979.png">
+<img width="482" alt="step2_throttle_2" src="https://user-images.githubusercontent.com/36104217/180229918-73264b26-7fc1-4e6a-aa8d-be67a95d2c8a.png">
+
++ Steering is having better error state and overshoot.
++ Throttle is having less overshoot. Steady State Error is decreasing in later iterations, because it's a trade off for small KP and KD to avoid overshoot.
++ Vehicle can avoid all obstacles in simulation, but lane keeping is just acceptable and drive at very slow speed.
+
+# Key questions for this project
+## What is the effect of the PID according to the plots, how each part of the PID affects the control command?
++ Proportional term: Produces an output value that is proportional to the current error value. A high proportional gain results in a large change in the output for a given change in the error.
++ Integral term: Proportional to both the magnitude of the error and the duration of the error. The integral term accelerates the movement of the process towards setpoint and eliminates the residual steady-state error that occurs with a pure proportional controller.
++ Derivative term: calculated by determining the slope of the error over time and multiplying this rate of change by the derivative gain. Derivative action predicts system behavior and thus improves settling time and stability of the system.
+
+## How would you design a way to automatically tune the PID parameters?
++ Twiddle algorithm: The twiddle algorithm continuously tunes the PID controller's hyperparameters by analyzing the cross-track error and keeping track of the smallest CTE.
+
+## PID controller is a model free controller, i.e. it does not use a model of the car. Could you explain the pros and cons of this type of controller?
+
+Pros:
++ Pid is easy to implement and feasible for many applications. It also needs to tune few parameters, via trial and error or cross-validation
+Cons:
++ With PID it's difficult to handle multiple constraints
+
+## What would you do to improve the PID controller?
++ Applying Twiddle algorithm might help in tuning PID parameters.
